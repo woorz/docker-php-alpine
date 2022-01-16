@@ -1,0 +1,29 @@
+{
+  "version": "2.0",
+  "envId": "{{env.ENV_ID}}",
+  "framework": {
+    "name": "aap",
+    "plugins": {
+      "client": {
+        "use": "@cloudbase/framework-plugin-container",
+        "inputs": {
+          "serviceName": "aap",
+          "servicePath": "/",
+          "uploadType": "package",
+          "containerPort": 80,
+          "volumeMounts": {
+            "/var/www/html": "aap-cfs"
+          }
+        }
+      }
+    },
+    "requirement": {
+      "addons": [
+        {
+          "type": "CFS",
+          "name": "aap-cfs"
+        }
+      ]
+    }
+  }
+}
