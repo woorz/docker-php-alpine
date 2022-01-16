@@ -1,7 +1,8 @@
 FROM alpine:3.15.0
 
 # Install packages
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories && apk --no-cache update && apk --no-cache add curl php7 php7-fpm \
+RUN set -eux && sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
+RUN apk --no-cache update && apk --no-cache add curl php7 php7-fpm \
     php7-mysqli php7-json php7-openssl php7-curl php7-zlib php7-xml \
 	php7-phar php7-intl php7-dom php7-xmlreader php7-ctype \
 	php7-mbstring php7-gd nginx supervisor
@@ -17,7 +18,8 @@ COPY config/php.ini /etc/php7/conf.d/zzz_custom.ini
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Add application
-RUN mkdir -p /var/www/html && chown -R nobody.nobody /var/www/html
+RUN mkdir -p /var/www/html
+RUN chown -R nobody.nobody /var/www/html
 
 # Switch to use a non-root user from here on
 USER nobody
