@@ -18,6 +18,12 @@ COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Add application
 RUN mkdir -p /var/www/html
+
+RUN chown -R nobody.nobody /var/www/html
+
+# Switch to use a non-root user from here on
+USER nobody
+
 WORKDIR /var/www/html
 
 EXPOSE 80
