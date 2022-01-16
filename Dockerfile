@@ -1,7 +1,6 @@
 FROM alpine:3.15.0
 
 # Install packages
-RUN set -eux && sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
 RUN apk --no-cache update && apk --no-cache add curl php7 php7-fpm \
     php7-mysqli php7-json php7-openssl php7-curl php7-zlib php7-xml \
 	php7-phar php7-intl php7-dom php7-xmlreader php7-ctype \
