@@ -18,7 +18,6 @@ COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Add application
 RUN mkdir -p /var/www/html
-
 WORKDIR /var/www/html
 
 EXPOSE 80
